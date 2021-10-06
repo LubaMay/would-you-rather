@@ -2,6 +2,6 @@ This repo is the React-Redux project from the [React Nanodegree program](https:/
 
 ## Project Setup
 
-* clone the Project - `https://github.com/LubaMay/reactnd-chirper-app.git`
+* clone the Project - `https://github.com/LubaMay/would-you-rather.git`
 * install the dependencies - `npm install`
 * run -  `npm start`
