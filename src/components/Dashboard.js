@@ -1,20 +1,27 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import Questions from './Questions'
+import Tabs from 'react-bootstrap/Tabs'
+import Tab from 'react-bootstrap/Tab'
 
 class Dashboard extends Component {
     render() {
         return (
-            <div>
-                <h3 className="center">Questions</h3>
-                <ul>
-                    {
-                        this.props.questionIds.map((id) => (
-                            <li key={id}>
-                                <div>QUESTION ID: {id}</div>
-                            </li>
-                        ))
-                    }
-                </ul>
+            <div className="center">
+                <h3>Questions</h3>
+                <Tabs
+                    id="controlled-tab-example"
+                    // activeKey={this.key}
+                    // onSelect={ }
+                    className="mb-3"
+                >
+                    <Tab eventKey="home" title="Unanswered questions">
+                        <Questions type="unanswered" />
+                    </Tab>
+                    <Tab eventKey="profile" title="Answered Questions">
+                        <Questions type="answered" />
+                    </Tab>
+                </Tabs>
             </div>
         )
     }
