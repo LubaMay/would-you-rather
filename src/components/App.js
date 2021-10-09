@@ -19,9 +19,9 @@ class App extends Component {
         <LoadingBar />
         {this.props.loading === true
           ? null :
-          <QuestionPage match={{ params: { id: '8xf0y6ziyjabvozdd253nd' } }} />
+          //<QuestionPage match={{ params: { id: '8xf0y6ziyjabvozdd253nd' } }} />
           //<NewQuestion />
-          //<Dashboard />
+          <Dashboard />
           //<Results />
         }
       </div>

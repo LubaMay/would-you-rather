@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { formatQuestion } from '../utils/_DATA'
+import { handleSaveAnswer } from '../actions/questions'
 
 class QuestionPage extends Component {
     state = {
@@ -21,9 +22,9 @@ class QuestionPage extends Component {
         e.preventDefault()
 
         const { answer } = this.state
-        const { dispatch, id } = this.props
+        const { dispatch, id, authedUser } = this.props
 
-        dispatch(handleSaveAnswer(answer, id))
+        dispatch(handleSaveAnswer(answer, id, authedUser))
 
         this.setState(() => ({
             answer: '',
@@ -105,6 +106,7 @@ function mapStateToProps({ authedUser, questions, users }, props) {
         optionOneText,
         optionTwoText,
         user,
+        authedUser,
         question: question ? formatQuestion(optionOneText, optionTwoText, user) : null,
     }
 }
