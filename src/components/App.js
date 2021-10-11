@@ -20,9 +20,9 @@ class App extends Component {
         {this.props.loading === true
           ? null :
           //<QuestionPage match={{ params: { id: '8xf0y6ziyjabvozdd253nd' } }} />
-          <NewQuestion />
+          //<NewQuestion />
           //<Dashboard />
-          //<Results />
+          <Results match={{ params: { id: '6ni6ok3ym7mf1p33lnez' } }} />
         }
       </div>
     );

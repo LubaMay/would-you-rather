@@ -4,6 +4,13 @@ export const RECEIVE_QUESTIONS = 'GET_QUESTIONS'
 export const ADD_QUESTION = 'ADD_QUESTION'
 export const SAVE_QUESTIONS_ANSWER = 'SAVE_QUESTIONS_ANSWER'
 
+export function receiveQuestions(questions) {
+    return {
+        type: RECEIVE_QUESTIONS,
+        questions
+    }
+}
+
 export function addQuestion(question) {
     return {
         type: ADD_QUESTION,
@@ -43,9 +50,3 @@ export function handleSaveAnswer(qid, answer) {
     }
 }
 
-export function receiveQuestions(questions) {
-    return {
-        type: RECEIVE_QUESTIONS,
-        questions
-    }
-}
