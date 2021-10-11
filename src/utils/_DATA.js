@@ -158,7 +158,7 @@ export function _saveQuestion(question) {
                 ...questions,
                 [formattedQuestion.id]: formattedQuestion
             }
-
+            console.log('user from api', users, authedUser)
             users = {
                 ...users,
                 [authedUser]: {
