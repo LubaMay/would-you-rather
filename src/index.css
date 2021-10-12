@@ -20,7 +20,7 @@ a {
   text-transform: uppercase;
   margin: 35px auto;
   padding: 10px;
-  border: 1px solid rgba(0,0,0,.29) !important;
+  border: 1px solid rgba(0, 0, 0, 0.29) !important;
   cursor: pointer;
   background: #fff;
   font-size: 16px;
@@ -29,7 +29,7 @@ a {
 }
 
 .btn:hover {
-  border-color: rgba(0,0,0,.5);
+  border-color: rgba(0, 0, 0, 0.5);
   text-decoration: none;
 }
 
@@ -95,7 +95,7 @@ li {
 }
 
 .form-check-label {
-  padding-left: .45rem;
+  padding-left: 0.45rem;
   color: #252525 !important;
 }
 
@@ -111,3 +111,54 @@ li {
   flex-direction: column;
 }
 
+.option {
+  width: 50%;
+  height: auto;
+  text-align: left;
+  margin: 12px 0;
+}
+.option-label {
+  position: absolute;
+  left: 0;
+  width: 380px;
+  height: 52px;
+  margin: 38px 20px 38px 0;
+  font-size: 44px;
+  text-align: right;
+}
+.results {
+  /* height: 120px; */
+  width: 100%;
+  margin: 5px 0 0;
+}
+.results .on {
+  height: 35px;
+  opacity: 0.75;
+  width: 0;
+}
+.results .on .count {
+  line-height: 0px;
+  font-size: 1rem;
+  vertical-align: middle;
+  text-align: left;
+  position: relative;
+  left: 81%;
+  display: inline-block;
+}
+
+#option-1 .results .on {
+  width: 20%;
+}
+
+.option-label,
+.results .on .count {
+  color: #fff;
+}
+
+.results {
+  background-color: rgba(87, 163, 236, 0.5);
+}
+
+.results .on {
+  background-color: #57a3ec;
+}
