@@ -130,6 +130,7 @@ li {
   /* height: 120px; */
   width: 100%;
   margin: 5px 0 0;
+  position: relative;
 }
 .results .on {
   height: 35px;
@@ -138,7 +139,8 @@ li {
 }
 .results .on .count {
   line-height: 0px;
-  font-size: 1rem;
+  margin-left: 0.5rem;
+  font-size: 1.1rem;
   vertical-align: middle;
   text-align: left;
   position: relative;
@@ -161,4 +163,23 @@ li {
 
 .results .on {
   background-color: #57a3ec;
+}
+
+.your-vote {
+  border: 1px solid;
+  border-radius: 100%;
+  font-size: 0.6rem;
+  padding: 0.8rem;
+  background-color: yellow;
+  position: fixed;
+  right: 48%;
+  top: 14%;
+}
+
+.your-vote.optTwo {
+  top: 30%;
+}
+
+.none {
+  display: none;
 }

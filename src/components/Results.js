@@ -11,13 +11,17 @@ class Results extends Component {
       optionTwoVotes,
       user,
       users,
-      votes,
+      question,
+      authedUser,
     } = this.props;
     const totalCount = Object.keys(users).length;
 
+    const yourVoteForOptOne = optionOneVotes.reduce((vote) => vote);
+    const yourVoteForOptTwo = optionTwoVotes.reduce((vote) => vote);
+
     const optionOneVotesRes = percentage(optionOneVotes.length, totalCount);
     const optionTwoVotesRes = percentage(optionTwoVotes.length, totalCount);
-    const { name } = user;
+    const { name, id } = user;
     return (
       <div className="question">
         <div>
@@ -26,12 +30,20 @@ class Results extends Component {
         <h3>Results:</h3>
         <div>
           <h3>Would you rather {optionOneText}?</h3>
-          <div class="chart">
-            <div id="option-1" class="option">
-              <div class="results">
-                <div class="on" style={{ width: `${optionOneVotesRes}%` }}>
-                  <span class="count">
+          <div className="chart">
+            <div id="option-1" className="option">
+              <div className="results">
+                <div className="on" style={{ width: `${optionOneVotesRes}%` }}>
+                  <span className="count">
                     <p>{`${optionOneVotesRes}%`}</p>
+                  </span>
+                  <span
+                    className={
+                      yourVoteForOptOne === authedUser ? "your-vote" : "none"
+                    }
+                  >
+                    Your <br />
+                    Vote
                   </span>
                 </div>
               </div>
@@ -43,12 +55,22 @@ class Results extends Component {
 
         <div>
           <h3>Would you rather {optionTwoText}?</h3>
-          <div class="chart">
-            <div id="option-1" class="option">
-              <div class="results">
-                <div class="on" style={{ width: `${optionTwoVotesRes}%` }}>
-                  <span class="count">
+          <div className="chart">
+            <div id="option-2" className="option">
+              <div className="results">
+                <div className="on" style={{ width: `${optionTwoVotesRes}%` }}>
+                  <span className="count">
                     <p>{`${optionTwoVotesRes}%`}</p>
+                  </span>
+                  <span
+                    className={
+                      yourVoteForOptTwo === authedUser
+                        ? "your-vote optTwo"
+                        : "none"
+                    }
+                  >
+                    Your <br />
+                    Vote
                   </span>
                 </div>
               </div>
@@ -70,8 +92,9 @@ function mapStateToProps({ authedUser, questions, users }, props) {
   const optionOneVotes = question.optionOne.votes;
   const optionTwoVotes = question.optionTwo.votes;
   const user = users[question.author];
+  console.log("This is user info", user.id);
   return {
-    id,
+    authedUser,
     question,
     optionOneText,
     optionTwoText,
