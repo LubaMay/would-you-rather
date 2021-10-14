@@ -133,6 +133,37 @@ li {
   font-size: 44px;
   text-align: right;
 }
+
+.question-results {
+  padding: 0;
+}
+
+.results-authorName {
+  background: #dad7d7;
+  padding: 1rem;
+  border: 1px solid #dad7d7;
+}
+.results-author-img {
+  display: grid;
+  align-items: center;
+}
+
+.results-author-img .avatar {
+  height: 25%;
+  border-radius: 100%;
+  margin: 20px;
+}
+
+.results-grid {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  column-gap: 0;
+}
+
+.results-title {
+  margin-inline-start: 1em;
+}
+
 .results {
   width: 100%;
   margin: 5px 0 0;
@@ -149,7 +180,7 @@ li {
   font-size: 1.1rem;
   vertical-align: middle;
   text-align: left;
-  /* position: relative; */
+  position: relative;
   left: 81%;
   display: inline-block;
 }

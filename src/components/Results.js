@@ -21,58 +21,72 @@ class Results extends Component {
 
     const optionOneVotesRes = percentage(optionOneVotes.length, totalCount);
     const optionTwoVotesRes = percentage(optionTwoVotes.length, totalCount);
-    const { name, id } = user;
+    const { name, avatarURL } = user;
     return (
-      <div className="question">
-        <div>
+      <div className="question question-results">
+        <div className="results-authorName">
           <span>Asked by {name}</span>
         </div>
-        <h3>Results:</h3>
-        <div className="chart">
-          <span
-            className={yourVoteForOptOne === authedUser ? "your-vote" : "none"}
-          >
-            Your <br />
-            Vote
-          </span>
-          <h3>Would you rather {optionOneText}?</h3>
-          <div>
-            <div id="option-1" className="option">
-              <div className="results">
-                <div className="on" style={{ width: `${optionOneVotesRes}%` }}>
-                  <span className="count">
-                    <p>{`${optionOneVotesRes}%`}</p>
-                  </span>
+        <div className="results-grid">
+          <div className="results-author-img">
+            <img src={avatarURL} alt={`Avatar of ${name}`} className="avatar" />
+          </div>
+          <div className="results-side-count">
+            <h3 className="results-title">Results:</h3>
+            <div className="chart">
+              <span
+                className={
+                  yourVoteForOptOne === authedUser ? "your-vote" : "none"
+                }
+              >
+                Your <br />
+                Vote
+              </span>
+              <h3>Would you rather {optionOneText}?</h3>
+              <div>
+                <div id="option-1" className="option">
+                  <div className="results">
+                    <div
+                      className="on"
+                      style={{ width: `${optionOneVotesRes}%` }}
+                    >
+                      <span className="count">
+                        <p>{`${optionOneVotesRes}%`}</p>
+                      </span>
+                    </div>
+                  </div>
                 </div>
               </div>
+
+              <p>{`${optionOneVotes.length} out of ${totalCount} votes`}</p>
             </div>
-          </div>
-
-          <p>{`${optionOneVotes.length} out of ${totalCount} votes`}</p>
-        </div>
-
-        <div className="chart">
-          <span
-            className={
-              yourVoteForOptTwo === authedUser ? "your-vote optTwo" : "none"
-            }
-          >
-            Your <br />
-            Vote
-          </span>
-          <h3>Would you rather {optionTwoText}?</h3>
-          <div>
-            <div id="option-2" className="option">
-              <div className="results">
-                <div className="on" style={{ width: `${optionTwoVotesRes}%` }}>
-                  <span className="count">
-                    <p>{`${optionTwoVotesRes}%`}</p>
-                  </span>
+            <div className="chart">
+              <span
+                className={
+                  yourVoteForOptTwo === authedUser ? "your-vote optTwo" : "none"
+                }
+              >
+                Your <br />
+                Vote
+              </span>
+              <h3>Would you rather {optionTwoText}?</h3>
+              <div>
+                <div id="option-2" className="option">
+                  <div className="results">
+                    <div
+                      className="on"
+                      style={{ width: `${optionTwoVotesRes}%` }}
+                    >
+                      <span className="count">
+                        <p>{`${optionTwoVotesRes}%`}</p>
+                      </span>
+                    </div>
+                  </div>
                 </div>
               </div>
+              <p>{`${optionTwoVotes.length} out of ${totalCount} votes`}</p>
             </div>
           </div>
-          <p>{`${optionTwoVotes.length} out of ${totalCount} votes`}</p>
         </div>
       </div>
     );
