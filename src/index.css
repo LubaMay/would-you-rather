@@ -146,6 +146,7 @@ li {
 .results-author-img {
   display: grid;
   align-items: center;
+  border-right: 1px solid #dad7d7;
 }
 
 .results-author-img .avatar {
@@ -213,10 +214,11 @@ li {
   right: -18px;
 }
 
-/* .your-vote.optTwo {
-  top: 30%;
-} */
-
 .none {
   display: none;
+}
+
+.leaderboard-grid {
+  display: grid;
+  grid-template-columns: 1fr 3fr 1fr;
 }

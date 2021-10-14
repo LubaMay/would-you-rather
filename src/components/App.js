@@ -6,6 +6,7 @@ import LoadingBar from "react-redux-loading";
 import QuestionPage from "./QuestionPage";
 import NewQuestion from "./NewQuestion";
 import Results from "./Results";
+import Leaderboard from "./Leaderboard";
 
 class App extends Component {
   componentDidMount() {
@@ -21,7 +22,8 @@ class App extends Component {
           //<QuestionPage match={{ params: { id: '8xf0y6ziyjabvozdd253nd' } }} />
           //<NewQuestion />
           //<Dashboard />
-          <Results match={{ params: { id: "am8ehyc8byjqgar0jgpub9" } }} />
+          //<Results match={{ params: { id: "am8ehyc8byjqgar0jgpub9" } }} />
+          <Leaderboard />
         )}
       </div>
     );
