@@ -52,6 +52,14 @@ class Results extends Component {
         </div>
 
         <div className="chart">
+          <span
+            className={
+              yourVoteForOptTwo === authedUser ? "your-vote optTwo" : "none"
+            }
+          >
+            Your <br />
+            Vote
+          </span>
           <h3>Would you rather {optionTwoText}?</h3>
           <div>
             <div id="option-2" className="option">
@@ -59,16 +67,6 @@ class Results extends Component {
                 <div className="on" style={{ width: `${optionTwoVotesRes}%` }}>
                   <span className="count">
                     <p>{`${optionTwoVotesRes}%`}</p>
-                  </span>
-                  <span
-                    className={
-                      yourVoteForOptTwo === authedUser
-                        ? "your-vote optTwo"
-                        : "none"
-                    }
-                  >
-                    Your <br />
-                    Vote
                   </span>
                 </div>
               </div>

@@ -115,7 +115,7 @@ li {
   border: 1px solid #57a3ec;
   background: rgba(87, 163, 236, 0.2);
   padding: 1rem;
-  margin: 1rem 1rem;
+  margin: 2rem 1rem;
   position: relative;
 }
 
@@ -174,15 +174,14 @@ li {
   font-size: 0.6rem;
   padding: 1rem;
   background-color: yellow;
-  position: fixed;
-
-  top: 8%;
-  right: 25%;
+  position: absolute;
+  top: -25px;
+  right: -18px;
 }
 
-.your-vote.optTwo {
+/* .your-vote.optTwo {
   top: 30%;
-}
+} */
 
 .none {
   display: none;
