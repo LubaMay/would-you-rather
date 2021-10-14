@@ -75,7 +75,7 @@ li {
 }
 
 .question {
-  width: 100%;
+  width: auto;
   max-width: 590px;
   padding: 10px;
   border: 1px solid #dad7d7;
@@ -115,7 +115,6 @@ li {
   width: 50%;
   height: auto;
   text-align: left;
-  margin: 12px 0;
 }
 .option-label {
   position: absolute;
