@@ -147,10 +147,6 @@ li {
   display: inline-block;
 }
 
-#option-1 .results .on {
-  width: 20%;
-}
-
 .option-label,
 .results .on .count {
   color: #fff;
@@ -162,17 +158,18 @@ li {
 
 .results .on {
   background-color: #57a3ec;
+  position: relative;
 }
 
 .your-vote {
   border: 1px solid;
   border-radius: 100%;
   font-size: 0.6rem;
-  padding: 0.8rem;
+  padding: 1rem;
   background-color: yellow;
   position: fixed;
   right: 48%;
-  top: 14%;
+  top: 13%;
 }
 
 .your-vote.optTwo {
