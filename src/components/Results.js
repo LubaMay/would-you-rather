@@ -16,8 +16,12 @@ class Results extends Component {
     } = this.props;
     const totalCount = Object.keys(users).length;
 
-    const yourVoteForOptOne = optionOneVotes.reduce((vote) => vote);
-    const yourVoteForOptTwo = optionTwoVotes.reduce((vote) => vote);
+    const yourVoteForOptOne = optionOneVotes.find(
+      (vote) => vote === authedUser
+    );
+    const yourVoteForOptTwo = optionTwoVotes.find(
+      (vote) => vote === authedUser
+    );
 
     const optionOneVotesRes = percentage(optionOneVotes.length, totalCount);
     const optionTwoVotesRes = percentage(optionTwoVotes.length, totalCount);
@@ -34,11 +38,7 @@ class Results extends Component {
           <div className="results-side-count">
             <h3 className="results-title">Results:</h3>
             <div className="chart">
-              <span
-                className={
-                  yourVoteForOptOne === authedUser ? "your-vote" : "none"
-                }
-              >
+              <span className={yourVoteForOptOne ? "your-vote" : "none"}>
                 Your <br />
                 Vote
               </span>
@@ -61,11 +61,7 @@ class Results extends Component {
               <p>{`${optionOneVotes.length} out of ${totalCount} votes`}</p>
             </div>
             <div className="chart">
-              <span
-                className={
-                  yourVoteForOptTwo === authedUser ? "your-vote optTwo" : "none"
-                }
-              >
+              <span className={yourVoteForOptTwo ? "your-vote optTwo" : "none"}>
                 Your <br />
                 Vote
               </span>

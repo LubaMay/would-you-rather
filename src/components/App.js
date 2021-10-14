@@ -21,7 +21,7 @@ class App extends Component {
           //<QuestionPage match={{ params: { id: '8xf0y6ziyjabvozdd253nd' } }} />
           //<NewQuestion />
           //<Dashboard />
-          <Results match={{ params: { id: "vthrdm985a262al8qx3do" } }} />
+          <Results match={{ params: { id: "am8ehyc8byjqgar0jgpub9" } }} />
         )}
       </div>
     );
