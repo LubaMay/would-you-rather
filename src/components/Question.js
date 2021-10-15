@@ -38,7 +38,7 @@ class Question extends Component {
             <div className="leaderboard-info">
               <h5>Would You Rather</h5>
               <p>...{questionPreview}</p>
-              <button className="poll-btn">View Poll</button>
+              <button className="btn">View Poll</button>
             </div>
           </div>
         </div>
