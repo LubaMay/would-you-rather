@@ -1,12 +1,12 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 import { connect } from "react-redux";
 import { handleInitialData } from "../actions/shared";
 import Dashboard from "./Dashboard";
 import LoadingBar from "react-redux-loading";
-import QuestionPage from "./QuestionPage";
 import NewQuestion from "./NewQuestion";
-import Results from "./Results";
 import Leaderboard from "./Leaderboard";
+import Nav from "./Nav";
 
 class App extends Component {
   componentDidMount() {
@@ -16,16 +16,21 @@ class App extends Component {
 
   render() {
     return (
-      <div>
-        <LoadingBar />
-        {this.props.loading === true ? null : (
-          //<QuestionPage match={{ params: { id: '8xf0y6ziyjabvozdd253nd' } }} />
-          //<NewQuestion />
-          //<Dashboard />
-          //<Results match={{ params: { id: "am8ehyc8byjqgar0jgpub9" } }} />
-          <Leaderboard />
-        )}
-      </div>
+      <Router>
+        <Fragment>
+          <LoadingBar />
+          <div className="container">
+            <Nav />
+            {this.props.loading === true ? null : (
+              <div>
+                <Route path="/" exact component={Dashboard} />
+                <Route path="/add" component={NewQuestion} />
+                <Route path="/leaderboard" component={Leaderboard} />
+              </div>
+            )}
+          </div>
+        </Fragment>
+      </Router>
     );
   }
 }
