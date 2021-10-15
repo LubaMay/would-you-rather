@@ -1,37 +1,36 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import Questions from './Questions'
-import Tabs from 'react-bootstrap/Tabs'
-import Tab from 'react-bootstrap/Tab'
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import Questions from "./Questions";
+import Tabs from "react-bootstrap/Tabs";
+import Tab from "react-bootstrap/Tab";
 
 class Dashboard extends Component {
-    render() {
-        return (
-            <div className="center">
-                <h3>Questions</h3>
-                <Tabs
-                    id="controlled-tab-example"
-                    // activeKey={this.key}
-                    // onSelect={ }
-                    className="mb-3"
-                >
-                    <Tab eventKey="home" title="Unanswered questions">
-                        <Questions type="unanswered" />
-                    </Tab>
-                    <Tab eventKey="profile" title="Answered Questions">
-                        <Questions type="answered" />
-                    </Tab>
-                </Tabs>
-            </div>
-        )
-    }
+  render() {
+    return (
+      <div>
+        <Tabs
+          // activeKey={this.key}
+          // onSelect={ }
+          className="mb-3 question center"
+        >
+          <Tab eventKey="home" title="Unanswered questions">
+            <Questions type="unanswered" />
+          </Tab>
+          <Tab eventKey="profile" title="Answered Questions">
+            <Questions type="answered" />
+          </Tab>
+        </Tabs>
+      </div>
+    );
+  }
 }
 
 function mapStateToProps({ questions }) {
-    return {
-        questionIds: Object.keys(questions)
-            .sort((a, b) => questions[b].timestamp - questions[a].timestamp)
-    }
+  return {
+    questionIds: Object.keys(questions).sort(
+      (a, b) => questions[b].timestamp - questions[a].timestamp
+    ),
+  };
 }
 
-export default connect(mapStateToProps)(Dashboard)
+export default connect(mapStateToProps)(Dashboard);
