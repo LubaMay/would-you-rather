@@ -1,13 +1,17 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { formatQuestion } from "../utils/_DATA";
+import { Link, withRouter } from "react-router-dom";
 
 class Question extends Component {
   render() {
-    const { optionOneText, user } = this.props;
+    const { optionOneText, user, question } = this.props;
+
     const { text } = optionOneText;
     const questionPreview = text.slice(0, 10) + "...";
     const { name, avatarURL } = user;
+    const { id } = question;
+    console.log("question", question);
     return (
       <div className="question">
         <div>
@@ -15,15 +19,6 @@ class Question extends Component {
             <span>{name} asks: </span>
           </div>
         </div>
-
-        {/* <div className="question-info">
-          <img src={avatarURL} alt={`Avatar of ${name}`} className="avatar" />
-          <div>
-            <h5>Would You Rather</h5>
-            <p>...{questionPreview}</p>
-            <button>View Poll</button>
-          </div>
-        </div> */}
 
         <div className="board dashboard">
           <div className="leaderboard-grid">
@@ -38,7 +33,9 @@ class Question extends Component {
             <div className="leaderboard-info">
               <h5>Would You Rather</h5>
               <p>...{questionPreview}</p>
-              <button className="btn">View Poll</button>
+              <Link to={`/question/${id}`}>
+                <button className="btn">View Poll</button>
+              </Link>
             </div>
           </div>
         </div>
@@ -48,20 +45,20 @@ class Question extends Component {
 }
 
 function mapStateToProps({ authedUser, users, questions }, { id }) {
+  console.log("id", id);
   const question = questions[id];
 
   const optionOneText = question.optionOne;
   const optionTwoText = question.optionTwo;
+
   const user = users[question.author];
 
   return {
     authedUser,
     optionOneText,
     user,
-    question: question
-      ? formatQuestion(question, optionOneText, optionTwoText, authedUser)
-      : null,
+    question,
   };
 }
 
-export default connect(mapStateToProps)(Question);
+export default withRouter(connect(mapStateToProps)(Question));
