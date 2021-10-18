@@ -18,7 +18,7 @@ function SignIn(props) {
 
   return (
     <div className="sign-form">
-      <h3>Welsome to the Would You Rather App!</h3>
+      <h3>Welcome to the Would You Rather App!</h3>
       <p>Please sign in to continue</p>
       <img
         src="https://miro.medium.com/max/600/1*i1yreXvK0kGrS9_uy5qKHQ.jpeg"
@@ -37,7 +37,6 @@ function SignIn(props) {
           }}
         >
           <option className="placeholder-user-txt">Select User</option>
-
           {options}
         </Form.Select>
         <Button variant="primary" type="submit">

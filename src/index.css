@@ -59,9 +59,7 @@ nav ul li a.active {
   font-weight: bold;
 }
 .sign-form {
-  display: grid;
-  justify-content: center;
-  justify-items: center;
+  text-align: center;
   width: auto;
   max-width: 590px;
   padding: 10px;
@@ -70,9 +68,12 @@ nav ul li a.active {
   margin: 0 auto;
 }
 
-/* .user-form select {
-  color: #dad7d7;
-} */
+.form-label {
+  color: #57a3ec;
+  font-size: 1.4rem;
+  font-weight: bold;
+  padding: 1rem 0;
+}
 
 .user-form {
   display: grid;
