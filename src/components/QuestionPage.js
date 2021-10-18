@@ -25,7 +25,7 @@ class QuestionPage extends Component {
     const { answer } = this.state;
     const { dispatch, id, authedUser } = this.props;
 
-    dispatch(handleSaveAnswer(answer, authedUser));
+    dispatch(handleSaveAnswer(answer, authedUser, id));
 
     this.setState(() => ({
       answer: "",
@@ -57,8 +57,8 @@ class QuestionPage extends Component {
                 <label>
                   <input
                     type="radio"
-                    value={optionOneText}
-                    checked={answer === optionOneText}
+                    value="optionOne"
+                    checked={answer === "optionOne"}
                     onChange={this.onRadioChange}
                   />
                   {optionOneText}
@@ -68,8 +68,8 @@ class QuestionPage extends Component {
                 <label>
                   <input
                     type="radio"
-                    value={optionTwoText}
-                    checked={answer === optionTwoText}
+                    value="optionTwo"
+                    checked={answer === "optionTwo"}
                     onChange={this.onRadioChange}
                   />
                   {optionTwoText}

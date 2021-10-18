@@ -30,21 +30,33 @@ export function handleAddQuestion(optionOneText, optionTwoText) {
   };
 }
 
-export function saveAnswer(qid, answer) {
+export function saveAnswer(answer) {
+  console.log("saveAnswer action", answer);
   return {
     type: SAVE_QUESTIONS_ANSWER,
     answer,
-    qid,
   };
 }
 
-export function handleSaveAnswer(qid, answer) {
+export function handleSaveAnswer(answer, author, qid) {
+  console.log("answer", answer);
+  console.log("author", author);
+  console.log("qid", qid);
   return (dispatch, getState) => {
-    const { authedUser, questions } = getState();
+    const { authedUser } = getState();
+
     return saveQuestionAnswer({
+      authedUser: author,
+      qid,
       answer,
-      authedUser,
-      qid: questions[qid],
-    }).then((answer) => dispatch(saveAnswer(qid, answer)));
+    }).then(() =>
+      dispatch(
+        saveAnswer({
+          authedUser: author,
+          qid,
+          answer,
+        })
+      )
+    );
   };
 }

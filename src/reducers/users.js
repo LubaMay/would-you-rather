@@ -1,5 +1,5 @@
 import { RECEIVE_USERS } from "../actions/users";
-import { ADD_QUESTION } from "../actions/questions";
+import { ADD_QUESTION, SAVE_QUESTIONS_ANSWER } from "../actions/questions";
 
 export default function users(state = {}, action) {
   switch (action.type) {
@@ -10,7 +10,7 @@ export default function users(state = {}, action) {
       };
     case ADD_QUESTION:
       console.log("state", state);
-      console.log("action", action);
+      //console.log("action", action);
       return {
         ...state,
         [action.question.author]: {
@@ -18,6 +18,21 @@ export default function users(state = {}, action) {
           questions: state[action.question.author].questions.concat([
             action.question.id,
           ]),
+        },
+      };
+    case SAVE_QUESTIONS_ANSWER:
+      // create prebuilt object
+      const newAnswer = {};
+      newAnswer[action.answer.qid] = action.answer.answer;
+      // append to state
+      return {
+        ...state,
+        [action.answer.authedUser]: {
+          ...state[action.answer.authedUser],
+          answers: Object.assign(
+            newAnswer,
+            state[action.answer.authedUser].answers
+          ),
         },
       };
     default:

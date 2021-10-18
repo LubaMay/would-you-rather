@@ -51,9 +51,8 @@ class Question extends Component {
 }
 
 function mapStateToProps({ authedUser, users, questions }, { id }) {
-  console.log("id", id);
   const question = questions[id];
-
+  console.log("refresh state questions", questions);
   const optionOneText = question.optionOne;
   const optionTwoText = question.optionTwo;
 
