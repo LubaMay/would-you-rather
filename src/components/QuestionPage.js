@@ -29,7 +29,7 @@ class QuestionPage extends Component {
 
     this.setState(() => ({
       answer: "",
-      toResults: id ? false : true,
+      toResults: id ? true : false,
     }));
   };
 
@@ -39,7 +39,7 @@ class QuestionPage extends Component {
     const { name, avatarURL } = user;
 
     if (toResults === true) {
-      return <Redirect to="/results" />;
+      return <Redirect to={`/results/${id}`} />;
     }
 
     return (
