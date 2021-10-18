@@ -1,20 +1,20 @@
 {
   "files": {
-    "main.css": "/would-you-rather/static/css/main.cd232373.chunk.css",
-    "main.js": "/would-you-rather/static/js/main.7f38b3a5.chunk.js",
-    "main.js.map": "/would-you-rather/static/js/main.7f38b3a5.chunk.js.map",
+    "main.css": "/would-you-rather/static/css/main.b293df0d.chunk.css",
+    "main.js": "/would-you-rather/static/js/main.54c1877c.chunk.js",
+    "main.js.map": "/would-you-rather/static/js/main.54c1877c.chunk.js.map",
     "runtime-main.js": "/would-you-rather/static/js/runtime-main.b43bfb11.js",
     "runtime-main.js.map": "/would-you-rather/static/js/runtime-main.b43bfb11.js.map",
     "static/js/2.9bb1f580.chunk.js": "/would-you-rather/static/js/2.9bb1f580.chunk.js",
     "static/js/2.9bb1f580.chunk.js.map": "/would-you-rather/static/js/2.9bb1f580.chunk.js.map",
     "index.html": "/would-you-rather/index.html",
-    "static/css/main.cd232373.chunk.css.map": "/would-you-rather/static/css/main.cd232373.chunk.css.map",
+    "static/css/main.b293df0d.chunk.css.map": "/would-you-rather/static/css/main.b293df0d.chunk.css.map",
     "static/js/2.9bb1f580.chunk.js.LICENSE.txt": "/would-you-rather/static/js/2.9bb1f580.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.b43bfb11.js",
     "static/js/2.9bb1f580.chunk.js",
-    "static/css/main.cd232373.chunk.css",
-    "static/js/main.7f38b3a5.chunk.js"
+    "static/css/main.b293df0d.chunk.css",
+    "static/js/main.54c1877c.chunk.js"
   ]
 }
