@@ -35,9 +35,10 @@ class Leaderboard extends Component {
 
                 <div className="score">
                   <p>Score</p>
-                  <p>
-                    <span className="score-shape">{score}</span>
-                  </p>
+
+                  <div className="score-shape">
+                    <span>{score}</span>
+                  </div>
                 </div>
               </div>
             </div>

@@ -289,6 +289,7 @@ li {
 .score {
   display: grid;
   align-content: center;
+  justify-items: center;
 }
 
 .score > p {
@@ -297,9 +298,13 @@ li {
 
 .score-shape {
   background: #57a3ec;
-  border: 1px;
-  border-radius: 100%;
-  padding: 1rem 1.5rem;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
   font-size: 1.3rem;
   color: #fff;
+  text-align: center;
 }
