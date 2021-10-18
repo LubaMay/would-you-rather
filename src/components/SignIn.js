@@ -2,9 +2,11 @@ import React, { useState } from "react";
 import { connect } from "react-redux";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
+import { Redirect } from "react-router";
 
 function SignIn(props) {
   const [user, setUser] = useState("");
+  const [toHome, setToHome] = useState(false);
 
   const { usersList } = props;
 
@@ -16,6 +18,16 @@ function SignIn(props) {
     );
   });
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log("toHome", toHome);
+    setToHome(true);
+  };
+
+  if (toHome === true) {
+    return <Redirect to="/home" />;
+  }
+
   return (
     <div className="sign-form">
       <h3>Welcome to the Would You Rather App!</h3>
@@ -26,23 +38,23 @@ function SignIn(props) {
         className="logo"
       />
 
-      <Form.Group className="user-form">
-        <Form.Label>Sign In</Form.Label>
-        <Form.Select
-          as="select"
-          value={user}
-          onChange={(e) => {
-            console.log("e.target.value", e.target.value);
-            setUser(e.target.value);
-          }}
-        >
-          <option className="placeholder-user-txt">Select User</option>
-          {options}
-        </Form.Select>
-        <Button variant="primary" type="submit">
-          Submit
-        </Button>
-      </Form.Group>
+      <Form onSubmit={(e) => handleSubmit(e)}>
+        <Form.Group className="user-form">
+          <Form.Label>Sign In</Form.Label>
+          <Form.Select
+            as="select"
+            value={user}
+            onChange={(e) => {
+              console.log("e.target.value", e.target.value);
+              setUser(e.target.value);
+            }}
+          >
+            <option className="placeholder-user-txt">Select User</option>
+            {options}
+          </Form.Select>
+          <Button type="submit">Submit</Button>
+        </Form.Group>
+      </Form>
     </div>
   );
 }
