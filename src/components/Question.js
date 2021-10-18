@@ -5,10 +5,10 @@ import { Link, withRouter } from "react-router-dom";
 
 class Question extends Component {
   render() {
-    const { optionOneText, user, question } = this.props;
+    const { optionOneText, isAnswered, user, question, authedUser } =
+      this.props;
 
-    const { text } = optionOneText;
-    const questionPreview = text.slice(0, 10) + "...";
+    const questionPreview = optionOneText.text.slice(0, 10) + "...";
     const { name, avatarURL } = user;
     const { id } = question;
     console.log("question", question);
@@ -33,9 +33,15 @@ class Question extends Component {
             <div className="leaderboard-info">
               <h5>Would You Rather</h5>
               <p>...{questionPreview}</p>
-              <Link to={`/question/${id}`}>
-                <button className="btn">View Poll</button>
-              </Link>
+              {isAnswered ? (
+                <Link to={`/results/${id}`}>
+                  <button className="btn">View Poll</button>
+                </Link>
+              ) : (
+                <Link to={`/question/${id}`}>
+                  <button className="btn">View Poll</button>
+                </Link>
+              )}
             </div>
           </div>
         </div>
@@ -51,11 +57,16 @@ function mapStateToProps({ authedUser, users, questions }, { id }) {
   const optionOneText = question.optionOne;
   const optionTwoText = question.optionTwo;
 
+  const isAnswered =
+    question.optionOne.votes.includes(authedUser) ||
+    question.optionTwo.votes.includes(authedUser);
+
   const user = users[question.author];
 
   return {
     authedUser,
     optionOneText,
+    isAnswered,
     user,
     question,
   };
