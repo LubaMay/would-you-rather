@@ -49,6 +49,7 @@ class Leaderboard extends Component {
 }
 
 function mapStateToProps({ users }) {
+  console.log("users", users);
   const usersList = Object.values(users);
 
   return {

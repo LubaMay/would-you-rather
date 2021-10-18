@@ -7,4 +7,6 @@ class SignIn extends Component {
   }
 }
 
+function mapStateToProps({ users }) {}
+
 export default connect()(SignIn);

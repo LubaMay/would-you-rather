@@ -170,7 +170,7 @@ export function _saveQuestion(question) {
           questions: users[authedUser].questions.concat([formattedQuestion.id]),
         },
       };
-
+      console.log("users updated", users, users[authedUser]);
       res(formattedQuestion);
     }, 1000);
   });
