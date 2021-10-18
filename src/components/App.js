@@ -9,6 +9,7 @@ import QuestionPage from "./QuestionPage";
 import Results from "./Results";
 import Leaderboard from "./Leaderboard";
 import Nav from "./Nav";
+import SignIn from "./SignIn";
 
 class App extends Component {
   componentDidMount() {
@@ -22,14 +23,15 @@ class App extends Component {
         <Fragment>
           <LoadingBar />
           <div className="container">
-            <Nav />
+            {/* <Nav /> */}
             {this.props.loading === true ? null : (
               <div>
-                <Route path="/" exact component={Dashboard} />
+                <SignIn />
+                {/* <Route path="/" exact component={Dashboard} />
                 <Route path="/add" component={NewQuestion} />
                 <Route path="/leaderboard" component={Leaderboard} />
                 <Route path="/question/:id" component={QuestionPage} />
-                <Route path="/results/:id" component={Results} />
+                <Route path="/results/:id" component={Results} /> */}
               </div>
             )}
           </div>
