@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
+import { setAuthedUser } from "../actions/authedUser";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import { Redirect } from "react-router";
@@ -8,11 +9,11 @@ function SignIn(props) {
   const [user, setUser] = useState("");
   const [toHome, setToHome] = useState(false);
 
-  const { usersList } = props;
+  const { usersList, dispatch } = props;
 
   const options = usersList.map((user, id) => {
     return (
-      <option key={id} value={user.name}>
+      <option key={id} value={user.id}>
         {user.name}
       </option>
     );
@@ -20,8 +21,10 @@ function SignIn(props) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("toHome", toHome);
+    const authedUser = user;
+    dispatch(setAuthedUser(authedUser));
     setToHome(true);
+    setUser("");
   };
 
   if (toHome === true) {
@@ -49,21 +52,26 @@ function SignIn(props) {
               setUser(e.target.value);
             }}
           >
-            <option className="placeholder-user-txt">Select User</option>
+            <option className="placeholder-user-txt" value="none">
+              Select User
+            </option>
             {options}
           </Form.Select>
-          <Button type="submit">Submit</Button>
+          <Button type="submit" disabled={user === ""}>
+            Submit
+          </Button>
         </Form.Group>
       </Form>
     </div>
   );
 }
 
-function mapStateToProps({ users }) {
+function mapStateToProps({ users, authedUser }) {
   const usersList = Object.values(users);
   console.log("list of users", usersList);
   return {
     usersList,
+    authedUser,
   };
 }
 

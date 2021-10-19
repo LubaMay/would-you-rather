@@ -20,6 +20,7 @@ class Questions extends Component {
 
 function mapStateToProps({ authedUser, users, questions }, { type }) {
   const currentUser = users[authedUser];
+  console.log("current user", currentUser, authedUser);
   const answeredQuestions = Object.keys(currentUser.answers);
   const questionIds = Object.keys(questions).sort(
     (a, b) => questions[b].timestamp - questions[a].timestamp

@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from "react";
-import { HashRouter as Router, Route } from "react-router-dom";
+import { HashRouter as Router, Route, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import { handleInitialData } from "../actions/shared";
 import Dashboard from "./Dashboard";
@@ -8,8 +8,9 @@ import NewQuestion from "./NewQuestion";
 import QuestionPage from "./QuestionPage";
 import Results from "./Results";
 import Leaderboard from "./Leaderboard";
-import Nav from "./Nav";
+import NavBar from "./NavBar";
 import SignIn from "./SignIn";
+import Logout from "./Logout";
 
 class App extends Component {
   componentDidMount() {
@@ -23,15 +24,18 @@ class App extends Component {
         <Fragment>
           <LoadingBar />
           <div className="container">
-            <Nav />
-            {this.props.loading === true ? null : (
+            <NavBar />
+            {this.props.loading === true ? (
+              <Route path="/" exact component={SignIn} />
+            ) : (
               <div>
-                <Route path="/" exact component={SignIn} />
                 <Route path="/home" component={Dashboard} />
                 <Route path="/add" component={NewQuestion} />
                 <Route path="/leaderboard" component={Leaderboard} />
                 <Route path="/question/:id" component={QuestionPage} />
                 <Route path="/results/:id" component={Results} />
+                <Route path="/logout" component={Logout} />
+                <Redirect exact from="/" to="/home" />
               </div>
             )}
           </div>
