@@ -21,8 +21,8 @@ class Question extends Component {
         </div>
 
         <div className="dashboard">
-          <div className="leaderboard-grid">
-            <div className="leaderboard-img">
+          <div className="leaderboard-grid home-page">
+            <div className="leaderboard-img home-page">
               <img
                 src={avatarURL}
                 alt={`Avatar of ${name}`}
@@ -30,7 +30,7 @@ class Question extends Component {
               />
             </div>
 
-            <div className="leaderboard-info">
+            <div className="leaderboard-info home-page">
               <h5>Would You Rather</h5>
               <p>...{questionPreview}</p>
               {isAnswered ? (
