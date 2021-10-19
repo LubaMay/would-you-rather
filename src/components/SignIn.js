@@ -7,7 +7,6 @@ import { Redirect } from "react-router";
 
 function SignIn(props) {
   const [user, setUser] = useState("");
-  const [toHome, setToHome] = useState(false);
 
   const { usersList, dispatch } = props;
 
@@ -23,13 +22,8 @@ function SignIn(props) {
     e.preventDefault();
     const authedUser = user;
     dispatch(setAuthedUser(authedUser));
-    setToHome(true);
     setUser("");
   };
-
-  if (toHome === true) {
-    return <Redirect to="/home" />;
-  }
 
   return (
     <div className="sign-form">

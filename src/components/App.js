@@ -15,7 +15,6 @@ import Results from "./Results";
 import Leaderboard from "./Leaderboard";
 import NavBar from "./NavBar";
 import SignIn from "./SignIn";
-import Logout from "./Logout";
 
 class App extends Component {
   componentDidMount() {
@@ -30,20 +29,22 @@ class App extends Component {
           <LoadingBar />
           <div className="container">
             <NavBar />
-            {this.props.loading === true ? (
-              <Route path="/" exact component={SignIn} />
+            {this.props.authedUser === null ? (
+              <Route
+                render={() => (
+                  <div className="center">
+                    <SignIn />
+                  </div>
+                )}
+              />
             ) : (
-              <div>
-                <Switch>
-                  <Route path="/home" component={Dashboard} />
-                  <Route path="/add" component={NewQuestion} />
-                  <Route path="/leaderboard" component={Leaderboard} />
-                  <Route path="/question/:id" component={QuestionPage} />
-                  <Route path="/results/:id" component={Results} />
-                  <Route path="/logout" component={Logout} />
-                  <Redirect exact from="/" to="/home" />
-                </Switch>
-              </div>
+              <Switch>
+                <Route exact path="/" component={Dashboard} />
+                <Route path="/add" component={NewQuestion} />
+                <Route path="/leaderboard" component={Leaderboard} />
+                <Route path="/question/:id" component={QuestionPage} />
+                <Route path="/results/:id" component={Results} />
+              </Switch>
             )}
           </div>
         </Fragment>
@@ -55,6 +56,7 @@ class App extends Component {
 function mapStateToProps({ authedUser }) {
   return {
     loading: authedUser === null,
+    authedUser,
   };
 }
 

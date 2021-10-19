@@ -1,16 +1,22 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { NavLink } from "react-router-dom";
-import Nav from "react-bootstrap/Nav";
+import { setAuthedUser } from "../actions/authedUser";
 
 class NavBar extends Component {
+  handleLogout = (e) => {
+    e.preventDefault();
+    const { dispatch } = this.props;
+    dispatch(setAuthedUser(null));
+  };
+
   render() {
     const { currentUser } = this.props;
     return (
       <nav className="nav">
         <ul>
           <li>
-            <NavLink to="/home" exact activeClassName="active">
+            <NavLink to="/" exact activeClassName="active">
               Home
             </NavLink>
           </li>
@@ -25,19 +31,24 @@ class NavBar extends Component {
             </NavLink>
           </li>
           {currentUser !== undefined ? (
-            <li className="justify-content-end">
-              <Nav.Link>Hello, {currentUser.name}</Nav.Link>
-              <img
-                src={currentUser.avatarURL}
-                alt={`Avatar of ${currentUser.name}`}
-                className="avatar"
-              />
-
-              <Nav.Link as={NavLink} to="/logout">
-                Logout
-              </Nav.Link>
+            <li className="login-user-info">
+              <div>
+                <div className="login-img">
+                  <img
+                    src={currentUser.avatarURL}
+                    alt={`Avatar of ${currentUser.name}`}
+                    className="avatar login"
+                  />
+                </div>
+                <span>Hello, {currentUser.name}</span>
+              </div>
             </li>
           ) : null}
+          <li>
+            <button className="btn" onClick={(e) => this.handleLogout(e)}>
+              Logout
+            </button>
+          </li>
         </ul>
       </nav>
     );
