@@ -105,6 +105,7 @@ nav ul li a.active {
 .logo {
   width: 200px;
   height: 200px;
+  margin: 0 auto;
 }
 
 .textarea {
