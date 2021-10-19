@@ -51,6 +51,7 @@ function SignIn(props) {
             </option>
             {options}
           </Form.Select>
+
           <Button type="submit" disabled={user === ""}>
             Submit
           </Button>
@@ -62,7 +63,7 @@ function SignIn(props) {
 
 function mapStateToProps({ users, authedUser }) {
   const usersList = Object.values(users);
-  console.log("list of users", usersList);
+
   return {
     usersList,
     authedUser,

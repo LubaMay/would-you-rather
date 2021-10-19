@@ -39,7 +39,7 @@ class QuestionPage extends Component {
     const { name, avatarURL } = user;
 
     if (toResults === true) {
-      return <Redirect to={`/results/${id}`} />;
+      return <Redirect to={`/answers/${id}`} />;
     }
 
     return (
@@ -75,7 +75,7 @@ class QuestionPage extends Component {
                   {optionTwoText}
                 </label>
               </div>
-              <button className="btn" type="submit">
+              <button className="btn" type="submit" disabled={!answer}>
                 Submit
               </button>
             </form>

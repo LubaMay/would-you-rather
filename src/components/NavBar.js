@@ -44,11 +44,13 @@ class NavBar extends Component {
               </div>
             </li>
           ) : null}
-          <li>
-            <button className="btn" onClick={(e) => this.handleLogout(e)}>
-              Logout
-            </button>
-          </li>
+          {currentUser !== undefined ? (
+            <li>
+              <button className="btn" onClick={(e) => this.handleLogout(e)}>
+                Logout
+              </button>
+            </li>
+          ) : null}
         </ul>
       </nav>
     );

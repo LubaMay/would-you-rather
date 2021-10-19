@@ -20,7 +20,7 @@ class Question extends Component {
           </div>
         </div>
 
-        <div className="board dashboard">
+        <div className="dashboard">
           <div className="leaderboard-grid">
             <div className="leaderboard-img">
               <img
@@ -34,7 +34,7 @@ class Question extends Component {
               <h5>Would You Rather</h5>
               <p>...{questionPreview}</p>
               {isAnswered ? (
-                <Link to={`/results/${id}`}>
+                <Link to={`/answers/${id}`}>
                   <button className="btn">View Poll</button>
                 </Link>
               ) : (

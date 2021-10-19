@@ -11,7 +11,7 @@ class NewQuestion extends Component {
   };
 
   handleChange = (e) => {
-    const value = e.target.value;
+    const value = e.target.value.toLowerCase();
 
     this.setState(() => ({
       ...this.state,
@@ -69,7 +69,7 @@ class NewQuestion extends Component {
           <button
             className="btn"
             type="submit"
-            // disabled={text === ''}
+            disabled={!this.state.optionOne && !this.state.optionTwo}
           >
             Submit
           </button>

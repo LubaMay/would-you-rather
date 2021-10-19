@@ -15,6 +15,7 @@ import Results from "./Results";
 import Leaderboard from "./Leaderboard";
 import NavBar from "./NavBar";
 import SignIn from "./SignIn";
+import NotFound from "./NotFound";
 
 class App extends Component {
   componentDidMount() {
@@ -43,7 +44,8 @@ class App extends Component {
                 <Route path="/add" component={NewQuestion} />
                 <Route path="/leaderboard" component={Leaderboard} />
                 <Route path="/question/:id" component={QuestionPage} />
-                <Route path="/results/:id" component={Results} />
+                <Route path="/answers/:id" component={Results} />
+                <Route component={NotFound} />
               </Switch>
             )}
           </div>
