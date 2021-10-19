@@ -1,5 +1,10 @@
 import React, { Component, Fragment } from "react";
-import { HashRouter as Router, Route, Redirect } from "react-router-dom";
+import {
+  HashRouter as Router,
+  Route,
+  Redirect,
+  Switch,
+} from "react-router-dom";
 import { connect } from "react-redux";
 import { handleInitialData } from "../actions/shared";
 import Dashboard from "./Dashboard";
@@ -29,13 +34,15 @@ class App extends Component {
               <Route path="/" exact component={SignIn} />
             ) : (
               <div>
-                <Route path="/home" component={Dashboard} />
-                <Route path="/add" component={NewQuestion} />
-                <Route path="/leaderboard" component={Leaderboard} />
-                <Route path="/question/:id" component={QuestionPage} />
-                <Route path="/results/:id" component={Results} />
-                <Route path="/logout" component={Logout} />
-                <Redirect exact from="/" to="/home" />
+                <Switch>
+                  <Route path="/home" component={Dashboard} />
+                  <Route path="/add" component={NewQuestion} />
+                  <Route path="/leaderboard" component={Leaderboard} />
+                  <Route path="/question/:id" component={QuestionPage} />
+                  <Route path="/results/:id" component={Results} />
+                  <Route path="/logout" component={Logout} />
+                  <Redirect exact from="/" to="/home" />
+                </Switch>
               </div>
             )}
           </div>

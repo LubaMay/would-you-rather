@@ -25,21 +25,18 @@ class NavBar extends Component {
             </NavLink>
           </li>
           {currentUser !== undefined ? (
-            <Nav className="justify-content-end">
-              <Nav.Item>
-                <Nav.Link>Hello, {currentUser.name}</Nav.Link>
-                <img
-                  src={currentUser.avatarURL}
-                  alt={`Avatar of ${currentUser.name}`}
-                  className="avatar"
-                />
-              </Nav.Item>
-              <Nav.Item>
-                <Nav.Link as={NavLink} to="/logout">
-                  Logout
-                </Nav.Link>
-              </Nav.Item>
-            </Nav>
+            <li className="justify-content-end">
+              <Nav.Link>Hello, {currentUser.name}</Nav.Link>
+              <img
+                src={currentUser.avatarURL}
+                alt={`Avatar of ${currentUser.name}`}
+                className="avatar"
+              />
+
+              <Nav.Link as={NavLink} to="/logout">
+                Logout
+              </Nav.Link>
+            </li>
           ) : null}
         </ul>
       </nav>

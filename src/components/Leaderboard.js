@@ -8,11 +8,12 @@ class Leaderboard extends Component {
 
     return (
       <div className="question leaderboard">
-        {usersList.map((user, id) => {
-          const { name, avatarURL, answers, questions } = user;
+        {usersList.map((id) => {
+          const { users } = this.props;
+          const { name, avatarURL, answers, questions } = users[id];
 
-          const answeredQs = Object.keys(answers).length;
-          const createdQs = questions.length;
+          const answeredQs = Object.keys(users[id].answers).length;
+          const createdQs = users[id].questions.length;
           const score = answeredQs + createdQs;
 
           return (
@@ -50,11 +51,20 @@ class Leaderboard extends Component {
 }
 
 function mapStateToProps({ users }) {
-  console.log("users", users);
-  const usersList = Object.values(users);
+  const usersList = Object.keys(users).sort((a, b) => {
+    let user2 =
+      Object.keys(users[b].answers).length +
+      Object.keys(users[b].questions).length;
+    let user1 =
+      Object.keys(users[a].answers).length +
+      Object.keys(users[a].questions).length;
+    console.log("users", user2, user1);
+    return user2 - user1;
+  });
 
   return {
     usersList,
+    users,
   };
 }
 
