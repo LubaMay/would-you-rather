@@ -41,6 +41,8 @@ class NewQuestion extends Component {
       return <Redirect to="/" />;
     }
 
+    const isEnabled = optionOne.length > 0 && optionTwo.length > 0;
+
     return (
       <div className="container">
         <h3 className="center question bg">Create New Question</h3>
@@ -66,11 +68,7 @@ class NewQuestion extends Component {
             className="textarea"
             maxLength={280}
           />
-          <button
-            className="btn"
-            type="submit"
-            disabled={!this.state.optionOne && !this.state.optionTwo}
-          >
+          <button className="btn" type="submit" disabled={!isEnabled}>
             Submit
           </button>
         </form>
