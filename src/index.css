@@ -446,3 +446,11 @@ li {
     margin-inline-start: 0;
   }
 }
+
+@media screen and (max-width: 767px) {
+  input,
+  select,
+  textarea {
+    font-size: 16px;
+  }
+}
