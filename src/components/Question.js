@@ -1,53 +1,46 @@
-import React, { Component } from "react";
+import React from "react";
 import { connect } from "react-redux";
 import { formatQuestion } from "../utils/_DATA";
 import { Link, withRouter } from "react-router-dom";
 
-class Question extends Component {
-  render() {
-    const { optionOneText, isAnswered, user, question, authedUser } =
-      this.props;
+function Question(props) {
+  const { optionOneText, isAnswered, user, question, authedUser } = props;
 
-    const questionPreview = optionOneText.text.slice(0, 10) + "...";
-    const { name, avatarURL } = user;
-    const { id } = question;
-    console.log("question", question);
-    return (
-      <div className="question">
-        <div>
-          <div className="results-authorName">
-            <span>{name} asks: </span>
-          </div>
+  const questionPreview = optionOneText.text.slice(0, 10) + "...";
+  const { name, avatarURL } = user;
+  const { id } = question;
+  console.log("question", question);
+  return (
+    <div className="question">
+      <div>
+        <div className="results-authorName">
+          <span>{name} asks: </span>
         </div>
+      </div>
 
-        <div className="dashboard">
-          <div className="leaderboard-grid home-page">
-            <div className="leaderboard-img home-page">
-              <img
-                src={avatarURL}
-                alt={`Avatar of ${name}`}
-                className="avatar"
-              />
-            </div>
+      <div className="dashboard">
+        <div className="leaderboard-grid home-page">
+          <div className="leaderboard-img home-page">
+            <img src={avatarURL} alt={`Avatar of ${name}`} className="avatar" />
+          </div>
 
-            <div className="leaderboard-info home-page">
-              <h5>Would You Rather</h5>
-              <p>...{questionPreview}</p>
-              {isAnswered ? (
-                <Link to={`/answers/${id}`}>
-                  <button className="btn">View Poll</button>
-                </Link>
-              ) : (
-                <Link to={`/question/${id}`}>
-                  <button className="btn">View Poll</button>
-                </Link>
-              )}
-            </div>
+          <div className="leaderboard-info home-page">
+            <h5>Would You Rather</h5>
+            <p>...{questionPreview}</p>
+            {isAnswered ? (
+              <Link to={`/answers/${id}`}>
+                <button className="btn">View Poll</button>
+              </Link>
+            ) : (
+              <Link to={`/question/${id}`}>
+                <button className="btn">View Poll</button>
+              </Link>
+            )}
           </div>
         </div>
       </div>
-    );
-  }
+    </div>
+  );
 }
 
 function mapStateToProps({ authedUser, users, questions }, { id }) {

@@ -9,6 +9,7 @@ class QuestionPage extends Component {
   state = {
     answer: "",
     toResults: false,
+    to404: false,
   };
 
   onRadioChange = (e) => {
@@ -24,6 +25,7 @@ class QuestionPage extends Component {
 
     const { answer } = this.state;
     const { dispatch, id, authedUser } = this.props;
+    console.log("PROPS FROM CREATED QUESTION", this.props);
 
     dispatch(handleSaveAnswer(answer, authedUser, id));
 
@@ -34,13 +36,45 @@ class QuestionPage extends Component {
   };
 
   render() {
-    const { answer, toResults } = this.state;
-    const { optionOneText, optionTwoText, user, id } = this.props;
-    const { name, avatarURL } = user;
+    let { answer, toResults, to404 } = this.state;
+    const {
+      optionOneText,
+      optionTwoText,
+      optionOneVotes,
+      optionTwoVotes,
+      user,
+      id,
+      authedUser,
+      question,
+    } = this.props;
+    console.log("TO RESULTS", toResults);
 
     if (toResults === true) {
       return <Redirect to={`/answers/${id}`} />;
     }
+
+    // If users voted already for this poll redirect them to results page.
+    const yourVoteForOptOne = optionOneVotes.find(
+      (vote) => vote === authedUser
+    );
+    const yourVoteForOptTwo = optionTwoVotes.find(
+      (vote) => vote === authedUser
+    );
+    console.log("YOUR VOTE", yourVoteForOptOne, yourVoteForOptTwo);
+
+    if (yourVoteForOptOne || yourVoteForOptTwo) {
+      return <Redirect to={`/answers/${id}`} />;
+    }
+    if (this.props.question === null) {
+      // If question w  as mapped as null then make 404 flag truthy
+      to404 = true;
+    }
+
+    if (to404 === true) {
+      return <Redirect to="/oops" />;
+    }
+
+    const { name, avatarURL } = user;
 
     return (
       <div className="question">
@@ -91,22 +125,35 @@ function mapStateToProps({ authedUser, questions, users }, props) {
   let { id } = props.match.params;
   const question = questions[id];
   console.log("question", question);
-  const optionOneText = question.optionOne.text;
-  const optionTwoText = question.optionTwo.text;
-  const user = users[question.author];
-  console.log("this is the author: ", user);
 
-  return {
-    id,
-    question,
-    optionOneText,
-    optionTwoText,
-    user,
-    authedUser,
-    question: question
-      ? formatQuestion(optionOneText, optionTwoText, user)
-      : null,
-  };
+  if (question) {
+    const optionOneText = question.optionOne.text;
+    const optionTwoText = question.optionTwo.text;
+    const optionOneVotes = question.optionOne.votes;
+    const optionTwoVotes = question.optionTwo.votes;
+    const user = users[question.author];
+    console.log("this is the author: ", user);
+
+    return {
+      id,
+      question,
+      optionOneText,
+      optionTwoText,
+      optionOneVotes,
+      optionTwoVotes,
+      user,
+      users,
+      authedUser,
+      question: question
+        ? formatQuestion(optionOneText, optionTwoText, user)
+        : null,
+    };
+  } else {
+    return {
+      id,
+      question: null,
+    };
+  }
 }
 
 export default connect(mapStateToProps)(QuestionPage);

@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { formatQuestion } from "../utils/_DATA";
+import { Redirect } from "react-router-dom";
+import NotFound from "./NotFound";
 
 class Results extends Component {
   render() {
@@ -13,7 +15,14 @@ class Results extends Component {
       users,
       question,
       authedUser,
+      questions,
+      id,
     } = this.props;
+    console.log("AUTHED USER", authedUser, user);
+
+    if (!user) {
+      return <Redirect to="/oops" />;
+    }
     const totalCount = Object.keys(users).length;
 
     const yourVoteForOptOne = optionOneVotes.find(
@@ -26,6 +35,19 @@ class Results extends Component {
     const optionOneVotesRes = percentage(optionOneVotes.length, totalCount);
     const optionTwoVotesRes = percentage(optionTwoVotes.length, totalCount);
     const { name, avatarURL } = user;
+    console.log("YOUR VOTE", yourVoteForOptOne, yourVoteForOptTwo);
+    if (
+      typeof yourVoteForOptOne === "undefined" &&
+      typeof yourVoteForOptTwo === "undefined"
+    ) {
+      return <Redirect to={`/question/${id}`} />;
+    }
+
+    if (!Object.keys(questions).includes(question.id)) {
+      console.log("OOPS REDIRECTING!!!");
+      <Redirect to="/oops" />;
+    }
+
     return (
       <div className="question question-results">
         <div className="results-authorName">
@@ -92,26 +114,34 @@ class Results extends Component {
 function mapStateToProps({ authedUser, questions, users }, props) {
   const { id } = props.match.params;
   const question = questions[id];
-  console.log("this is the question info: ", question);
-  const optionOneText = question.optionOne.text;
-  const optionTwoText = question.optionTwo.text;
-  const optionOneVotes = question.optionOne.votes;
-  const optionTwoVotes = question.optionTwo.votes;
-  const user = users[question.author];
-  console.log("This is user info", user.id);
-  return {
-    authedUser,
-    question,
-    optionOneText,
-    optionTwoText,
-    optionOneVotes,
-    optionTwoVotes,
-    user,
-    users,
-    question: question
-      ? formatQuestion(optionOneText, optionTwoText, user)
-      : null,
-  };
+  // console.log("this is the question id: ", question.id);
+  if (question) {
+    const optionOneText = question.optionOne.text;
+    const optionTwoText = question.optionTwo.text;
+    const optionOneVotes = question.optionOne.votes;
+    const optionTwoVotes = question.optionTwo.votes;
+    const user = users[question.author];
+    console.log("This is user info", user.id, question);
+    return {
+      authedUser,
+      question,
+      questions,
+      optionOneText,
+      optionTwoText,
+      optionOneVotes,
+      optionTwoVotes,
+      user,
+      users,
+      question: question
+        ? formatQuestion(optionOneText, optionTwoText, user)
+        : null,
+    };
+  } else {
+    return {
+      id,
+      question: null,
+    };
+  }
 }
 
 function percentage(votesCount, totalVotes) {

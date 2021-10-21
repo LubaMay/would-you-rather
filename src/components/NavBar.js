@@ -14,23 +14,24 @@ class NavBar extends Component {
     const { currentUser } = this.props;
     return (
       <nav className="nav">
-        <ul>
-          <li>
-            <NavLink to="/" exact activeClassName="active">
-              Home
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to="/add" activeClassName="active">
-              New Question
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to="/leaderboard" activeClassName="active">
-              Leader Board
-            </NavLink>
-          </li>
-          {currentUser !== undefined ? (
+        {currentUser !== undefined ? (
+          <ul>
+            <li>
+              <NavLink to="/" exact activeClassName="active">
+                Home
+              </NavLink>
+            </li>
+            <li>
+              <NavLink to="/add" activeClassName="active">
+                New Question
+              </NavLink>
+            </li>
+            <li>
+              <NavLink to="/leaderboard" activeClassName="active">
+                Leader Board
+              </NavLink>
+            </li>
+
             <li className="login-user-info">
               <div>
                 <div className="login-img">
@@ -43,15 +44,14 @@ class NavBar extends Component {
                 <span>Hello, {currentUser.name}</span>
               </div>
             </li>
-          ) : null}
-          {currentUser !== undefined ? (
+
             <li>
               <button className="btn" onClick={(e) => this.handleLogout(e)}>
                 Logout
               </button>
             </li>
-          ) : null}
-        </ul>
+          </ul>
+        ) : null}
       </nav>
     );
   }

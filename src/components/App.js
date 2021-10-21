@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from "react";
+import React, { Fragment, useEffect } from "react";
 import {
   HashRouter as Router,
   Route,
@@ -17,42 +17,39 @@ import NavBar from "./NavBar";
 import SignIn from "./SignIn";
 import NotFound from "./NotFound";
 
-class App extends Component {
-  componentDidMount() {
-    const { dispatch } = this.props;
+function App(props) {
+  useEffect(() => {
+    const { dispatch } = props;
     dispatch(handleInitialData());
-  }
-
-  render() {
-    return (
-      <Router>
-        <Fragment>
-          <LoadingBar />
-          <div className="container">
-            <NavBar />
-            {this.props.authedUser === null ? (
-              <Route
-                render={() => (
-                  <div className="center">
-                    <SignIn />
-                  </div>
-                )}
-              />
-            ) : (
-              <Switch>
-                <Route exact path="/" component={Dashboard} />
-                <Route path="/add" component={NewQuestion} />
-                <Route path="/leaderboard" component={Leaderboard} />
-                <Route path="/question/:id" component={QuestionPage} />
-                <Route path="/answers/:id" component={Results} />
-                <Route component={NotFound} />
-              </Switch>
-            )}
-          </div>
-        </Fragment>
-      </Router>
-    );
-  }
+  });
+  return (
+    <Router>
+      <Fragment>
+        <LoadingBar />
+        <div className="container">
+          <NavBar />
+          {props.authedUser === null ? (
+            <Route
+              render={() => (
+                <div className="center">
+                  <SignIn />
+                </div>
+              )}
+            />
+          ) : (
+            <Switch>
+              <Route exact path="/" component={Dashboard} />
+              <Route path="/add" component={NewQuestion} />
+              <Route path="/leaderboard" component={Leaderboard} />
+              <Route path="/question/:id" component={QuestionPage} />
+              <Route path="/answers/:id" component={Results} />
+              <Route component={NotFound} />
+            </Switch>
+          )}
+        </div>
+      </Fragment>
+    </Router>
+  );
 }
 
 function mapStateToProps({ authedUser }) {

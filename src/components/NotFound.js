@@ -5,7 +5,9 @@ export default function NotFound() {
   return (
     <div>
       <h1>404 - Page Not Found!</h1>
-      <Link to="/">Go back to Home page</Link>
+      <Link to="/">
+        <button className="btn not-found">Return Home</button>
+      </Link>
     </div>
   );
 }

@@ -59,6 +59,10 @@ img {
   cursor: pointer;
 }
 
+.btn.not-found {
+  width: auto;
+}
+
 .center {
   text-align: center;
 }

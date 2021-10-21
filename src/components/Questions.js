@@ -1,21 +1,21 @@
-import React, { Component } from "react";
+import React from "react";
 import { connect } from "react-redux";
+import PropTypes from "prop-types";
 import Question from "./Question";
 
-class Questions extends Component {
-  render() {
-    const { questionList } = this.props;
-    console.log("Questions list", questionList);
-    return (
-      <div>
-        {questionList.map((id) => (
-          <div key={id}>
-            <Question id={id} />
-          </div>
-        ))}
-      </div>
-    );
-  }
+function Questions(props) {
+  const { questionList } = props;
+  console.log("Questions list", questionList);
+
+  return (
+    <div>
+      {questionList.map((id) => (
+        <div key={id}>
+          <Question id={id} />
+        </div>
+      ))}
+    </div>
+  );
 }
 
 function mapStateToProps({ authedUser, users, questions }, { type }) {
@@ -48,5 +48,15 @@ function mapStateToProps({ authedUser, users, questions }, { type }) {
     };
   }
 }
+
+Questions.propTypes = {
+  questionList: PropTypes.array,
+};
+
+mapStateToProps.propTypes = {
+  authedUser: PropTypes.string,
+  users: PropTypes.array,
+  questions: PropTypes.array,
+};
 
 export default connect(mapStateToProps)(Questions);
