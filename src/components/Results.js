@@ -123,6 +123,7 @@ function mapStateToProps({ authedUser, questions, users }, props) {
     const user = users[question.author];
     console.log("This is user info", user.id, question);
     return {
+      id,
       authedUser,
       question,
       questions,
