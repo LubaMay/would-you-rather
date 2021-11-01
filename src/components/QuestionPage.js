@@ -54,6 +54,14 @@ class QuestionPage extends Component {
     }
 
     // If users voted already for this poll redirect them to results page.
+
+    if (
+      typeof optionOneVotes === "undefined" &&
+      typeof optionTwoVotes === "undefined"
+    ) {
+      return <Redirect to="/oops" />;
+    }
+
     const yourVoteForOptOne = optionOneVotes.find(
       (vote) => vote === authedUser
     );

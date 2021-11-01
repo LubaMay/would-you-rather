@@ -25,6 +25,13 @@ class Results extends Component {
     }
     const totalCount = Object.keys(users).length;
 
+    if (
+      typeof optionOneVotes === "undefined" &&
+      typeof optionTwoVotes === "undefined"
+    ) {
+      return <Redirect to="/oops" />;
+    }
+
     const yourVoteForOptOne = optionOneVotes.find(
       (vote) => vote === authedUser
     );
