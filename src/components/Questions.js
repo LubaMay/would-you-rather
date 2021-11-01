@@ -2,13 +2,27 @@ import React from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import Question from "./Question";
+import { Link } from "react-router-dom";
 
 function Questions(props) {
   const { questionList } = props;
   console.log("Questions list", questionList);
 
+  let emptyArr = questionList.length == 0;
+
   return (
-    <div>
+    <div className="center">
+      {emptyArr ? (
+        <div>
+          <h3>
+            Yay! You answered all the questions! Create a new one
+            <Link to="/add" className="link">
+              {" "}
+              here.
+            </Link>
+          </h3>
+        </div>
+      ) : null}
       {questionList.map((id) => (
         <div key={id}>
           <Question id={id} />
