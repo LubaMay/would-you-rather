@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { formatQuestion } from "../utils/_DATA";
 import { handleSaveAnswer } from "../actions/questions";
-import Question from "./Question";
+import { setAuthedUser } from "../actions/authedUser";
 import { Redirect } from "react-router-dom";
 
 class QuestionPage extends Component {
@@ -10,6 +10,7 @@ class QuestionPage extends Component {
     answer: "",
     toResults: false,
     to404: false,
+    userDid404: false,
   };
 
   onRadioChange = (e) => {
@@ -25,7 +26,6 @@ class QuestionPage extends Component {
 
     const { answer } = this.state;
     const { dispatch, id, authedUser } = this.props;
-    console.log("PROPS FROM CREATED QUESTION", this.props);
 
     dispatch(handleSaveAnswer(answer, authedUser, id));
 
@@ -34,6 +34,17 @@ class QuestionPage extends Component {
       toResults: id ? true : false,
     }));
   };
+
+  componentWillUnmount() {
+    if (
+      typeof this.props.optionOneVotes === "undefined" &&
+      typeof this.props.optionTwoVotes === "undefined"
+    ) {
+      const { dispatch } = this.props;
+      dispatch(setAuthedUser(null));
+      return <Redirect to="/oops" />;
+    }
+  }
 
   render() {
     let { answer, toResults, to404 } = this.state;
@@ -47,13 +58,10 @@ class QuestionPage extends Component {
       authedUser,
       question,
     } = this.props;
-    console.log("TO RESULTS", toResults);
 
     if (toResults === true) {
       return <Redirect to={`/answers/${id}`} />;
     }
-
-    // If users voted already for this poll redirect them to results page.
 
     if (
       typeof optionOneVotes === "undefined" &&
@@ -68,13 +76,13 @@ class QuestionPage extends Component {
     const yourVoteForOptTwo = optionTwoVotes.find(
       (vote) => vote === authedUser
     );
-    console.log("YOUR VOTE", yourVoteForOptOne, yourVoteForOptTwo);
 
     if (yourVoteForOptOne || yourVoteForOptTwo) {
       return <Redirect to={`/answers/${id}`} />;
     }
-    if (this.props.question === null) {
+    if (!question || question === null) {
       // If question w  as mapped as null then make 404 flag truthy
+
       to404 = true;
     }
 
@@ -129,10 +137,8 @@ class QuestionPage extends Component {
 }
 
 function mapStateToProps({ authedUser, questions, users }, props) {
-  console.log("props", props);
   let { id } = props.match.params;
   const question = questions[id];
-  console.log("question", question);
 
   if (question) {
     const optionOneText = question.optionOne.text;
@@ -140,7 +146,6 @@ function mapStateToProps({ authedUser, questions, users }, props) {
     const optionOneVotes = question.optionOne.votes;
     const optionTwoVotes = question.optionTwo.votes;
     const user = users[question.author];
-    console.log("this is the author: ", user);
 
     return {
       id,

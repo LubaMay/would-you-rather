@@ -1,10 +1,21 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { formatQuestion } from "../utils/_DATA";
+import { setAuthedUser } from "../actions/authedUser";
 import { Redirect } from "react-router-dom";
-import NotFound from "./NotFound";
 
 class Results extends Component {
+  componentWillUnmount() {
+    if (
+      typeof this.props.optionOneVotes === "undefined" &&
+      typeof this.props.optionTwoVotes === "undefined"
+    ) {
+      const { dispatch } = this.props;
+      dispatch(setAuthedUser(null));
+      return <Redirect to="/oops" />;
+    }
+  }
+
   render() {
     const {
       optionOneText,
@@ -18,7 +29,6 @@ class Results extends Component {
       questions,
       id,
     } = this.props;
-    console.log("AUTHED USER", authedUser, user);
 
     if (!user) {
       return <Redirect to="/oops" />;
@@ -42,7 +52,7 @@ class Results extends Component {
     const optionOneVotesRes = percentage(optionOneVotes.length, totalCount);
     const optionTwoVotesRes = percentage(optionTwoVotes.length, totalCount);
     const { name, avatarURL } = user;
-    console.log("YOUR VOTE", yourVoteForOptOne, yourVoteForOptTwo);
+
     if (
       typeof yourVoteForOptOne === "undefined" &&
       typeof yourVoteForOptTwo === "undefined"
@@ -51,7 +61,6 @@ class Results extends Component {
     }
 
     if (!Object.keys(questions).includes(question.id)) {
-      console.log("OOPS REDIRECTING!!!");
       <Redirect to="/oops" />;
     }
 
@@ -121,14 +130,12 @@ class Results extends Component {
 function mapStateToProps({ authedUser, questions, users }, props) {
   const { id } = props.match.params;
   const question = questions[id];
-  // console.log("this is the question id: ", question.id);
   if (question) {
     const optionOneText = question.optionOne.text;
     const optionTwoText = question.optionTwo.text;
     const optionOneVotes = question.optionOne.votes;
     const optionTwoVotes = question.optionTwo.votes;
     const user = users[question.author];
-    console.log("This is user info", user.id, question);
     return {
       id,
       authedUser,

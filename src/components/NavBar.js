@@ -59,7 +59,6 @@ class NavBar extends Component {
 
 function mapStateToProps({ users, authedUser }) {
   const currentUser = users[authedUser];
-  console.log("CURRENT USER", currentUser);
   return {
     currentUser,
   };

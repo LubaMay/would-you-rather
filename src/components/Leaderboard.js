@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { formatQuestion } from "../utils/_DATA";
 
 class Leaderboard extends Component {
   render() {
@@ -10,7 +9,7 @@ class Leaderboard extends Component {
       <div className="question leaderboard">
         {usersList.map((id) => {
           const { users } = this.props;
-          const { name, avatarURL, answers, questions } = users[id];
+          const { name, avatarURL } = users[id];
 
           const answeredQs = Object.keys(users[id].answers).length;
           const createdQs = users[id].questions.length;
@@ -59,7 +58,6 @@ function mapStateToProps({ users }) {
       Object.keys(users[b].answers).length +
       Object.keys(users[b].questions).length;
 
-    console.log("users", user2, user1);
     return user2 - user1;
   });
 

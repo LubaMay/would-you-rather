@@ -1,10 +1,5 @@
 import React, { Fragment, useEffect } from "react";
-import {
-  HashRouter as Router,
-  Route,
-  Redirect,
-  Switch,
-} from "react-router-dom";
+import { HashRouter as Router, Route, Switch } from "react-router-dom";
 import { connect } from "react-redux";
 import { handleInitialData } from "../actions/shared";
 import Dashboard from "./Dashboard";
@@ -29,13 +24,7 @@ function App(props) {
         <div className="container">
           <NavBar />
           {props.authedUser === null ? (
-            <Route
-              render={() => (
-                <div className="center">
-                  <SignIn />
-                </div>
-              )}
-            />
+            <Route path="*" component={SignIn} />
           ) : (
             <Switch>
               <Route exact path="/" component={Dashboard} />

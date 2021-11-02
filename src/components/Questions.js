@@ -6,9 +6,8 @@ import { Link } from "react-router-dom";
 
 function Questions(props) {
   const { questionList } = props;
-  console.log("Questions list", questionList);
 
-  let emptyArr = questionList.length == 0;
+  let emptyArr = questionList.length === 0;
 
   return (
     <div className="center">
@@ -34,16 +33,13 @@ function Questions(props) {
 
 function mapStateToProps({ authedUser, users, questions }, { type }) {
   const currentUser = users[authedUser];
-  console.log("current user", currentUser, authedUser);
   const answeredQuestions = Object.keys(currentUser.answers);
   const questionIds = Object.keys(questions).sort(
     (a, b) => questions[b].timestamp - questions[a].timestamp
   );
-  console.log("IDS", questionIds);
 
   if (type === "unanswered") {
     const spreaded = [...questionIds];
-    console.log("WTF???", spreaded);
     const questionList = spreaded.filter((el) => {
       return !answeredQuestions.includes(el);
     });

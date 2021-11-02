@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import { setAuthedUser } from "../actions/authedUser";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-import { Redirect } from "react-router";
 
 function SignIn(props) {
   const [user, setUser] = useState("");
@@ -42,7 +41,6 @@ function SignIn(props) {
             as="select"
             value={user}
             onChange={(e) => {
-              console.log("e.target.value", e.target.value);
               setUser(e.target.value);
             }}
           >

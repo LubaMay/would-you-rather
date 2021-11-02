@@ -1,15 +1,13 @@
 import React from "react";
 import { connect } from "react-redux";
-import { formatQuestion } from "../utils/_DATA";
 import { Link, withRouter } from "react-router-dom";
 
 function Question(props) {
-  const { optionOneText, isAnswered, user, question, authedUser } = props;
+  const { optionOneText, isAnswered, user, question } = props;
 
   const questionPreview = optionOneText.text.slice(0, 10) + "...";
   const { name, avatarURL } = user;
   const { id } = question;
-  console.log("question", question);
   return (
     <div className="question">
       <div>
@@ -45,7 +43,6 @@ function Question(props) {
 
 function mapStateToProps({ authedUser, users, questions }, { id }) {
   const question = questions[id];
-  console.log("refresh state questions", questions);
   const optionOneText = question.optionOne;
   const optionTwoText = question.optionTwo;
 
